@@ -41,9 +41,7 @@ public class PushNotificationPedroDuartePlugin implements  FlutterPlugin, Method
   @RequiresApi(api = Build.VERSION_CODES.M)
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-    if (call.method.equals("getPlatformVersion")) {
-      result.success("Android " + android.os.Build.VERSION.RELEASE);
-    }else if (call.method.equals("notification")) {
+  if (call.method.equals("notification")) {
 
       String texto = call.argument("texto");
       String titulo = call.argument("titulo");
