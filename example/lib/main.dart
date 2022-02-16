@@ -22,9 +22,9 @@ class _MyAppState extends State<MyApp> {
 initPlatformState() async {
     try {
 
-      await PushNotificationPedroDuarte.notification_push("Titulo","Descricao");
-
-    } on PlatformException {
+     // await PushNotificationPedroDuarte.notification_push("Titulo","Descricao");
+await PushNotificationPedroDuarte.notification_push_event();
+    } on Exception {
     print("Algo deu erro não estava previsto !");
     }
 
