@@ -5,12 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:push_notification_pedro_duarte/push_notification_pedro_duarte.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   State<MyApp> createState() => _MyAppState();
 }

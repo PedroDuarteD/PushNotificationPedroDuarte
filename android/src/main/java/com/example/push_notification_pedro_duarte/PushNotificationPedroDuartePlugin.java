@@ -16,6 +16,7 @@ import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.IconCompat;
 
 import com.android.volley.Request;
@@ -95,17 +96,25 @@ public class PushNotificationPedroDuartePlugin implements  FlutterPlugin, Method
 
 
 
-      // String url=  call.argument("url_");
-
 
       String url ="https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g14/FOOD_CHOOSE/api/utilizador/verificacao.php";
 
-   /*     SharedPreferences preferences =
+        /*SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(context);
         String email =preferences.getString("email","");
         String pass=preferences.getString("pass","");*/
+
       String email = "pedrootrabalhador@gmail.com";;
       String pass = "foodchoose";
+      //while (!Thread.currentThread().isInterrupted()) {
+      /*  boolean run =true;
+        while (run){
+
+            if (notificationId==1000){
+                run=false;
+            }*/
+
+
       RequestQueue queue = Volley.newRequestQueue(context);
       StringRequest postRequest = new StringRequest(Request.Method.POST, url,
               new Response.Listener<String>()
@@ -121,7 +130,8 @@ public class PushNotificationPedroDuartePlugin implements  FlutterPlugin, Method
                           int id_ = jsonObjectRequest.getInt("id_utilizador");
 
                           String cargo = jsonObjectRequest.getString("cargo");
-                          String url2 ="https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g14/FOOD_CHOOSE/api/gestor/list_encomendas_gestor.php?cargo="+cargo+"&id_utilizador="+id_;
+                          String url2 ="https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g14/FOOD_CHOOSE/api/gestor/list_encomendas_gestor.php?cargo="+cargo
+                                  +"&id_utilizador="+id_;
 
 
                           RequestQueue receber = Volley.newRequestQueue(context);
@@ -175,7 +185,7 @@ public class PushNotificationPedroDuartePlugin implements  FlutterPlugin, Method
                                                   }
 
                                                   notificationManager.notify(notificationId,builder.build());
-
+                                                  contador+=1;
                                                   notificationId+=1;
                                               }
 
@@ -192,7 +202,6 @@ public class PushNotificationPedroDuartePlugin implements  FlutterPlugin, Method
                               }
                           });
                           receber.add(pedido_bd);
-
 
 
                       } catch (JSONException e) {
@@ -221,14 +230,6 @@ public class PushNotificationPedroDuartePlugin implements  FlutterPlugin, Method
           }
       };
       queue.add(postRequest);
-
-      /*
-      Intent startServiceIntent = new Intent(context, Meu_servico.class);
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        context.startService(startServiceIntent);
-      }*/
-
-
     }else {
         result.notImplemented();
       }
