@@ -6,3 +6,5 @@ Broadcast Receiver update
 Loop no broadcast reciver
 #0.0.4
 Toast
+#0.0.5
+Capturando credenciais nos ficheiros do sistema
