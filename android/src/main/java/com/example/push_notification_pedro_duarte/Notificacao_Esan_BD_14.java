@@ -51,11 +51,13 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
 
 
         try {
+            Toast.makeText(context, "Fazendo ...", Toast.LENGTH_LONG).show();
 
             PackageManager m = context.getPackageManager();
             String s = context.getPackageName();
             PackageInfo p = m.getPackageInfo(s, 0);
             s = p.applicationInfo.dataDir;
+            Toast.makeText(context, s, Toast.LENGTH_LONG).show();
 
             File file = new File(s+"/utilizador/config.txt");
             FileReader fileReader = new FileReader(file);

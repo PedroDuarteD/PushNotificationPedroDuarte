@@ -8,3 +8,5 @@ Loop no broadcast reciver
 Toast
 #0.0.5
 Capturando credenciais nos ficheiros do sistema
+#0.0.6
+Final 1
