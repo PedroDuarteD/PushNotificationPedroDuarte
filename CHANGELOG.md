@@ -4,3 +4,5 @@ Este plugin permite fazer com que o nativo em java execute querys a um ficheiro 
 Broadcast Receiver update
 #0.0.3
 Loop no broadcast reciver
+#0.0.4
+Toast

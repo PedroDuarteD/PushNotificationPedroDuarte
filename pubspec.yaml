@@ -1,6 +1,6 @@
 name: push_notification_pedro_duarte
 description: Lançar Notificações e redirecionar
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/PedroDuarteD/PushNotificationPedroDuarte.git
 
 environment:

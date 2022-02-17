@@ -35,11 +35,17 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        Toast.makeText(context, "Inicio", Toast.LENGTH_SHORT).show();
+
  SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(context);
         String email =preferences.getString("email","");
         String pass=preferences.getString("pass","");
-handler = new Handler();
+
+        Toast.makeText(context, "E: "+email, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "P: "+pass, Toast.LENGTH_LONG).show();
+
+        handler = new Handler();
 runnable = new Runnable() {
     @Override
     public void run() {
