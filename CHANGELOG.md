@@ -10,3 +10,5 @@ Toast
 Capturando credenciais nos ficheiros do sistema
 #0.0.6
 Final 1
+#0.0.7
+Resultado

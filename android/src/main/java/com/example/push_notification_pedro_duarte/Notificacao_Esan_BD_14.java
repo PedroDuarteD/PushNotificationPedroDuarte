@@ -50,10 +50,9 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
 
-        try {
             Toast.makeText(context, "Fazendo ...", Toast.LENGTH_LONG).show();
 
-            PackageManager m = context.getPackageManager();
+       /*     PackageManager m = context.getPackageManager();
             String s = context.getPackageName();
             PackageInfo p = m.getPackageInfo(s, 0);
             s = p.applicationInfo.dataDir;
@@ -63,15 +62,15 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
             FileReader fileReader = new FileReader(file);
             int caractere;
             String linha = "";
-
-            if(file.exists()){
-                while ((caractere=fileReader.read())!=-1){
+*/
+            //file.exists()){
+             /*   while ((caractere=fileReader.read())!=-1){
                     linha+=(char) caractere;
-                }
+                }*/
 
-                String email = linha.split(",")[0];
+                String email = "pedrootrabalhador@gmai.com";//linha.split(",")[0];
 
-                String pass = linha.split(",")[1];
+                String pass = "foodchoose";//linha.split(",")[1];
 
                 Toast.makeText(context, "Fazendo ...", Toast.LENGTH_LONG).show();
 
@@ -80,22 +79,17 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
                 runnable = new Runnable() {
                     @Override
                     public void run() {
-                        handler.postDelayed(runnable, 10000);
+                        Toast.makeText(context, "Dentro do lopp ", Toast.LENGTH_LONG).show();
 
 
-
-                        String url ="https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g14/FOOD_CHOOSE/api/utilizador/verificacao.php";
-
-
+                        String url = "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g14/FOOD_CHOOSE/api/utilizador/verificacao.php";
 
 
                         RequestQueue queue = Volley.newRequestQueue(context);
                         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                                new Response.Listener<String>()
-                                {
+                                new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
-
 
 
                                         try {
@@ -104,8 +98,8 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
                                             int id_ = jsonObjectRequest.getInt("id_utilizador");
 
                                             String cargo = jsonObjectRequest.getString("cargo");
-                                            String url2 ="https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g14/FOOD_CHOOSE/api/gestor/list_encomendas_gestor.php?cargo="+cargo
-                                                    +"&id_utilizador="+id_;
+                                            String url2 = "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g14/FOOD_CHOOSE/api/gestor/list_encomendas_gestor.php?cargo=" + cargo
+                                                    + "&id_utilizador=" + id_;
 
 
                                             RequestQueue receber = Volley.newRequestQueue(context);
@@ -116,35 +110,35 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
 
                                                             try {
                                                                 JSONArray jsonArray = new JSONArray(response);
-                                                                int contador =0;
-                                                                for(int posicao=0;posicao<jsonArray.length();posicao++){
+                                                                int contador = 0;
+                                                                for (int posicao = 0; posicao < jsonArray.length(); posicao++) {
 
                                                                     Encomenda encomenda = new Encomenda();
                                                                     JSONObject ob = (JSONObject) jsonArray.get(posicao);
-                                                                    encomenda.quantidade=ob.getInt("quantidade");
-                                                                    encomenda.nome_receita =ob.getString("nome_receita");
+                                                                    encomenda.quantidade = ob.getInt("quantidade");
+                                                                    encomenda.nome_receita = ob.getString("nome_receita");
 
-                                                                    String nome_do_criador="";
+                                                                    String nome_do_criador = "";
 
 
-                                                                    if(!ob.getString("nome_restaurante").isEmpty()){
-                                                                        nome_do_criador ="Criador: "+ob.getString("nome_restaurante");
+                                                                    if (!ob.getString("nome_restaurante").isEmpty()) {
+                                                                        nome_do_criador = "Criador: " + ob.getString("nome_restaurante");
 
-                                                                    }else if(!ob.getString("nome_criador_receita").isEmpty()){
-                                                                        nome_do_criador ="Criador: "+ob.getString("nome_criador_receita");
+                                                                    } else if (!ob.getString("nome_criador_receita").isEmpty()) {
+                                                                        nome_do_criador = "Criador: " + ob.getString("nome_criador_receita");
 
-                                                                    }else{
-                                                                        nome_do_criador="Receita de Agendamento !";
+                                                                    } else {
+                                                                        nome_do_criador = "Receita de Agendamento !";
                                                                     }
 
 
                                                                     NotificationCompat.Builder builder =
-                                                                            new NotificationCompat.Builder(context,String.valueOf(notificationId))
+                                                                            new NotificationCompat.Builder(context, String.valueOf(notificationId))
                                                                                     .setSmallIcon(context.getResources().getIdentifier("food_choose_background", "drawable", context.getPackageName()))
-                                                                                    .setContentTitle("Encomenda da receita: "+encomenda.nome_receita)
-                                                                                    .setSubText(nome_do_criador )
+                                                                                    .setContentTitle("Encomenda da receita: " + encomenda.nome_receita)
+                                                                                    .setSubText(nome_do_criador)
                                                                                     .setGroup("food_choose")
-                                                                                    .setContentText("Para "+encomenda.quantidade+" pessoa"+(encomenda.quantidade>1? "s":"")+" .");
+                                                                                    .setContentText("Para " + encomenda.quantidade + " pessoa" + (encomenda.quantidade > 1 ? "s" : "") + " .");
 
                                                                     NotificationManager notificationManager =
                                                                             (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -158,12 +152,12 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
                                                                         notificationManager.createNotificationChannel(channel);
                                                                     }
 
-                                                                    notificationManager.notify(notificationId,builder.build());
-                                                                    contador+=1;
-                                                                    notificationId+=1;
+                                                                    notificationManager.notify(notificationId, builder.build());
+                                                                    contador += 1;
+                                                                    notificationId += 1;
                                                                 }
 
-                                                                Toast.makeText(context, "VEZES: "+contador, Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(context, "VEZES: " + contador, Toast.LENGTH_SHORT).show();
                                                             } catch (JSONException e) {
                                                                 e.printStackTrace();
                                                             }
@@ -184,8 +178,7 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
 
                                     }
                                 },
-                                new Response.ErrorListener()
-                                {
+                                new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
                                         // error
@@ -194,9 +187,8 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
                                 }
                         ) {
                             @Override
-                            protected Map<String, String> getParams()
-                            {
-                                Map<String, String>  params = new HashMap<String, String>();
+                            protected Map<String, String> getParams() {
+                                Map<String, String> params = new HashMap<String, String>();
                                 params.put("email", email);
                                 params.put("password", pass);
 
@@ -205,7 +197,7 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
                         };
                         queue.add(postRequest);
 
-
+                        handler.postDelayed(runnable, 10000);
 
                     }
                 };
@@ -213,18 +205,16 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
 
 
 
-            }
 
 
 
-        } catch (FileNotFoundException e) {
+   /*     } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-        }
-
+        }*/
 
     }
 

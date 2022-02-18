@@ -2,7 +2,6 @@
     package="com.example.push_notification_pedro_duarte_example">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"></uses-permission>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
    <application
@@ -36,9 +35,11 @@
 
 
        <receiver android:name="com.example.push_notification_pedro_duarte.Notificacao_Esan_BD_14"
+           android:permission="android.permission.RECEIVE_BOOT_COMPLETED"
            android:exported="true">
            <intent-filter>
                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+               <category android:name="android.intent.category.DEFAULT" />
            </intent-filter>
        </receiver>
 
