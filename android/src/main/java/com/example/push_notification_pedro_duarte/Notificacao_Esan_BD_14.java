@@ -50,7 +50,6 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
 
-            Toast.makeText(context, "Fazendo ...", Toast.LENGTH_LONG).show();
 
        /*     PackageManager m = context.getPackageManager();
             String s = context.getPackageName();
@@ -72,14 +71,12 @@ public  class Notificacao_Esan_BD_14 extends BroadcastReceiver {
 
                 String pass = "foodchoose";//linha.split(",")[1];
 
-                Toast.makeText(context, "Fazendo ...", Toast.LENGTH_LONG).show();
 
 
                 handler = new Handler();
                 runnable = new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(context, "Dentro do lopp ", Toast.LENGTH_LONG).show();
 
 
                         String url = "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g14/FOOD_CHOOSE/api/utilizador/verificacao.php";
