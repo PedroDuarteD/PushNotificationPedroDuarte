@@ -193,7 +193,6 @@ public class PushNotificationPedroDuartePlugin implements  FlutterPlugin, Method
                                                           notificationId += 1;
                                                       }
 
-                                                      Toast.makeText(context, "VEZES: " + contador, Toast.LENGTH_SHORT).show();
                                                   } catch (JSONException e) {
                                                       e.printStackTrace();
                                                   }
